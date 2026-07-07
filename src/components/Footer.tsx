@@ -59,9 +59,12 @@ export function Footer({ full }: { full?: boolean }) {
             <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 15, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
               Kalesha &amp; Co
             </div>
-            <p style={{ fontFamily: fonts.sans, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: colors.grayLight, maxWidth: 280, margin: 0 }}>
+            <p style={{ fontFamily: fonts.sans, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: colors.grayLight, maxWidth: 280, margin: "0 0 12px" }}>
               ISO certification and GRC advisory for technology and SaaS companies.
             </p>
+            <div style={{ fontFamily: fonts.sans, fontWeight: 400, fontSize: "0.8rem", letterSpacing: "0.04em", color: colors.grayLight }}>
+              Est. 2019
+            </div>
           </div>
           <div>
             <div style={footerHeading}>Services</div>
@@ -100,8 +103,14 @@ export function Footer({ full }: { full?: boolean }) {
           <div>
             <div style={footerHeading}>Contact</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <a href="mailto:hello@kaleshaco.com" style={footerLink}>
-                hello@kaleshaco.com
+              <a href="mailto:sales@kaleshaco.com" style={footerLink}>
+                sales@kaleshaco.com
+              </a>
+              <a href="tel:+919014241420" style={footerLink}>
+                +91 90142 41420
+              </a>
+              <a href="https://www.linkedin.com/company/kaleshaco/" target="_blank" rel="noopener noreferrer" style={footerLink}>
+                LinkedIn
               </a>
               <div style={{ fontFamily: fonts.sans, fontWeight: 400, fontSize: "0.9rem", color: colors.grayLight }}>Montana, USA</div>
             </div>

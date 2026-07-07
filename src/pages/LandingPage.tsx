@@ -7,9 +7,25 @@ import isoLogo from "../assets/logos/iso.svg";
 import aicpaLogo from "../assets/logos/aicpa.png";
 import icaiLogo from "../assets/logos/icai.png";
 import accaLogo from "../assets/logos/acca.svg";
-import quickbooksLogo from "../assets/logos/quickbooks.svg";
-import xeroLogo from "../assets/logos/xero.png";
-import zohoLogo from "../assets/logos/zoho.svg";
+
+const CLIENTS = [
+  { name: "Bliro", url: "https://bliro.io" },
+  { name: "Cobrainer", url: "https://cobrainer.com" },
+  { name: "Dotfile", url: "https://dotfile.com" },
+  { name: "Ethiack", url: "https://ethiack.com" },
+  { name: "Sysarb", url: "https://sysarb.com" },
+  { name: "Agile RL", url: "https://agilerl.com" },
+  { name: "Acceleriad", url: "https://acceleraid.ai/" },
+];
+
+const PARTNERS = [
+  { name: "5tattva", url: "https://5tattva.com" },
+  { name: "Accedere", url: "https://accedere.io" },
+  { name: "Auriseg", url: "https://auriseg.com" },
+  { name: "Vulnuris", url: "https://vulnuris.in" },
+  { name: "TechOwl Infosec", url: "https://techowl.com" },
+  { name: "Acurate Global Inc", url: "https://accurateiso.com/" },
+];
 
 const WHY_US = [
   {
@@ -197,14 +213,40 @@ export function LandingPage() {
               { label: "CPA", logo: aicpaLogo },
             ]}
           />
-          <CredentialColumn
-            title="Software Partnerships"
-            items={[
-              { label: "QuickBooks ProAdvisor", logo: quickbooksLogo },
-              { label: "Xero Partner", logo: xeroLogo },
-              { label: "Zoho Partner", logo: zohoLogo },
-            ]}
-          />
+          <div>
+            <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: colors.grayLight, marginBottom: 18 }}>
+              Partnerships
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {PARTNERS.map((p) => (
+                <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" style={{ ...tag, textDecoration: "none", display: "block" }}>
+                  {p.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CLIENTS */}
+      <section id="clients" style={{ background: "#fff", padding: "104px 48px", borderTop: `1px solid ${colors.border}` }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 48, marginBottom: 48 }}>
+            <div style={eyebrow}>Clients</div>
+            <div>
+              <h2 style={sectionHeading}>500+ clients trust us with their compliance program.</h2>
+              <p style={sectionBody}>
+                A sample of the technology and SaaS companies we work with across ISO certification and GRC advisory.
+              </p>
+            </div>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            {CLIENTS.map((c) => (
+              <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" style={{ ...tag, textDecoration: "none" }}>
+                {c.name}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -292,10 +334,10 @@ export function LandingPage() {
               Schedule a Call
             </button>
             <a
-              href="mailto:hello@kaleshaco.com"
+              href="mailto:sales@kaleshaco.com"
               style={{ background: "transparent", color: colors.bg, border: "1px solid rgba(255,255,255,0.25)", padding: "16px 32px", fontFamily: fonts.sans, fontWeight: 500, fontSize: 13, letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none" }}
             >
-              hello@kaleshaco.com
+              sales@kaleshaco.com
             </a>
           </div>
         </div>
