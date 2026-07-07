@@ -2,29 +2,40 @@ import { useState } from "react";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { ScheduleModal } from "../components/ScheduleModal";
+import { LogoMarquee } from "../components/LogoMarquee";
 import { colors, fonts, STANDARDS } from "../theme";
 import isoLogo from "../assets/logos/iso.svg";
 import aicpaLogo from "../assets/logos/aicpa.png";
 import icaiLogo from "../assets/logos/icai.png";
 import accaLogo from "../assets/logos/acca.svg";
+import bliroLogo from "../assets/logos/companies/bliro.svg";
+import dotfileLogo from "../assets/logos/companies/dotfile.svg";
+import ethiackLogo from "../assets/logos/companies/ethiack.svg";
+import sysarbLogo from "../assets/logos/companies/sysarb.svg";
+import agilerlLogo from "../assets/logos/companies/agilerl.svg";
+import acceleriadLogo from "../assets/logos/companies/acceleriad.png";
+import fivetattvaLogo from "../assets/logos/companies/5tattva.png";
+import accedereLogo from "../assets/logos/companies/accedere.png";
+import techowlLogo from "../assets/logos/companies/techowl.png";
+import acurateGlobalLogo from "../assets/logos/companies/acurate-global.png";
 
 const CLIENTS = [
-  { name: "Bliro", url: "https://bliro.io" },
+  { name: "Bliro", url: "https://bliro.io", logo: bliroLogo },
   { name: "Cobrainer", url: "https://cobrainer.com" },
-  { name: "Dotfile", url: "https://dotfile.com" },
-  { name: "Ethiack", url: "https://ethiack.com" },
-  { name: "Sysarb", url: "https://sysarb.com" },
-  { name: "Agile RL", url: "https://agilerl.com" },
-  { name: "Acceleriad", url: "https://acceleraid.ai/" },
+  { name: "Dotfile", url: "https://dotfile.com", logo: dotfileLogo },
+  { name: "Ethiack", url: "https://ethiack.com", logo: ethiackLogo },
+  { name: "Sysarb", url: "https://sysarb.com", logo: sysarbLogo },
+  { name: "Agile RL", url: "https://agilerl.com", logo: agilerlLogo },
+  { name: "Acceleriad", url: "https://acceleraid.ai/", logo: acceleriadLogo },
 ];
 
 const PARTNERS = [
-  { name: "5tattva", url: "https://5tattva.com" },
-  { name: "Accedere", url: "https://accedere.io" },
+  { name: "5tattva", url: "https://5tattva.com", logo: fivetattvaLogo },
+  { name: "Accedere", url: "https://accedere.io", logo: accedereLogo },
   { name: "Auriseg", url: "https://auriseg.com" },
   { name: "Vulnuris", url: "https://vulnuris.in" },
-  { name: "TechOwl Infosec", url: "https://techowl.com" },
-  { name: "Acurate Global Inc", url: "https://accurateiso.com/" },
+  { name: "TechOwl Infosec", url: "https://techowl.com", logo: techowlLogo },
+  { name: "Acurate Global Inc", url: "https://accurateiso.com/", logo: acurateGlobalLogo },
 ];
 
 const WHY_US = [
@@ -188,12 +199,12 @@ export function LandingPage() {
 
         <div
           style={{
-            maxWidth: 1280,
+            maxWidth: 860,
             margin: "88px auto 0",
             paddingTop: 56,
             borderTop: `1px solid ${colors.border}`,
             display: "grid",
-            gridTemplateColumns: "repeat(3,1fr)",
+            gridTemplateColumns: "repeat(2,1fr)",
             gap: 48,
           }}
         >
@@ -213,25 +224,21 @@ export function LandingPage() {
               { label: "CPA", logo: aicpaLogo },
             ]}
           />
-          <div>
-            <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: colors.grayLight, marginBottom: 18 }}>
-              Partnerships
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {PARTNERS.map((p) => (
-                <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" style={{ ...tag, textDecoration: "none", display: "block" }}>
-                  {p.name}
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
+      {/* PARTNERSHIPS */}
+      <section id="partnerships" style={{ background: colors.bgAlt, padding: "72px 0", borderTop: `1px solid ${colors.border}` }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto 32px", padding: "0 48px" }}>
+          <div style={eyebrow}>Partnerships</div>
+        </div>
+        <LogoMarquee items={PARTNERS} durationSeconds={30} />
+      </section>
+
       {/* CLIENTS */}
-      <section id="clients" style={{ background: "#fff", padding: "104px 48px", borderTop: `1px solid ${colors.border}` }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 48, marginBottom: 48 }}>
+      <section id="clients" style={{ background: "#fff", padding: "104px 0", borderTop: `1px solid ${colors.border}` }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto 48px", padding: "0 48px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 48 }}>
             <div style={eyebrow}>Clients</div>
             <div>
               <h2 style={sectionHeading}>500+ clients trust us with their compliance program.</h2>
@@ -240,14 +247,8 @@ export function LandingPage() {
               </p>
             </div>
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-            {CLIENTS.map((c) => (
-              <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" style={{ ...tag, textDecoration: "none" }}>
-                {c.name}
-              </a>
-            ))}
-          </div>
         </div>
+        <LogoMarquee items={CLIENTS} durationSeconds={36} />
       </section>
 
       {/* TEAM */}
