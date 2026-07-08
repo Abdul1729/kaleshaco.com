@@ -59,6 +59,14 @@ for (const page of HTML_PAGES) {
   const outPath = path.join(DIST, page.out);
   mkdirSync(path.dirname(outPath), { recursive: true });
   writeFileSync(outPath, rewritten);
+
+  // Also serve at the extension-less clean URL (e.g. /services/soc-2/index.html)
+  // in case the static host doesn't apply the .htaccess rewrite rules.
+  if (page.out !== "index.html") {
+    const cleanDir = path.join(DIST, page.out.replace(/\.html$/, ""));
+    mkdirSync(cleanDir, { recursive: true });
+    writeFileSync(path.join(cleanDir, "index.html"), rewritten);
+  }
 }
 
 copyFileSync(path.join(ROOT, "public/.htaccess"), path.join(DIST, ".htaccess"));
