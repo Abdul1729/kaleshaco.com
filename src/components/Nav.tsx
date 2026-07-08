@@ -1,7 +1,10 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import { colors, fonts } from "../theme";
+import { ServicesMegaMenu, CompanyMegaMenu } from "./MegaMenu";
 
 export function Nav({ onScheduleCall }: { onScheduleCall?: () => void }) {
+  const [openMenu, setOpenMenu] = useState<"services" | "company" | null>(null);
+
   return (
     <div
       style={{
@@ -15,6 +18,7 @@ export function Nav({ onScheduleCall }: { onScheduleCall?: () => void }) {
     >
       <div
         style={{
+          position: "relative",
           maxWidth: 1280,
           margin: "0 auto",
           padding: "0 48px",
@@ -41,9 +45,18 @@ export function Nav({ onScheduleCall }: { onScheduleCall?: () => void }) {
           Kalesha &amp; Co
         </a>
         <div style={{ display: "flex", alignItems: "center", gap: 36, flexWrap: "wrap" }}>
-          <a href="/services" style={navLinkStyle}>
-            Services
-          </a>
+          <div style={{ position: "relative" }} onMouseEnter={() => setOpenMenu("services")} onMouseLeave={() => setOpenMenu(null)}>
+            <a href="/services" style={navLinkStyle}>
+              Services
+            </a>
+            {openMenu === "services" && <ServicesMegaMenu />}
+          </div>
+          <div style={{ position: "relative" }} onMouseEnter={() => setOpenMenu("company")} onMouseLeave={() => setOpenMenu(null)}>
+            <a href="/company/about" style={navLinkStyle}>
+              Company
+            </a>
+            {openMenu === "company" && <CompanyMegaMenu />}
+          </div>
           <a href="/#why-us" style={navLinkStyle}>
             Why Us
           </a>

@@ -34,6 +34,9 @@ export function Footer({ full }: { full?: boolean }) {
               textTransform: "uppercase",
               color: colors.grayLight,
               textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
             }}
           >
             ← Back to Home

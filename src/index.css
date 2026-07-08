@@ -70,3 +70,7 @@ body {
 .kc-marquee-card:hover img {
   filter: grayscale(0) opacity(1);
 }
+
+.kc-menu-row:hover {
+  background: #f4f3f0;
+}
