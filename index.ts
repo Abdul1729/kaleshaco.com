@@ -23,6 +23,7 @@ import company_blogs from "./company/blogs.html";
 import company_data_security_policy from "./company/data-security-policy.html";
 
 const server = Bun.serve({
+  port: process.env.PORT ? Number(process.env.PORT) : 3000,
   routes: {
     "/": landing,
     "/services": services,
