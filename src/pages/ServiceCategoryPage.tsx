@@ -30,50 +30,60 @@ export function ServiceCategoryPage({ category }: { category: ServiceCategory })
           >
             {category.fullName}
           </h1>
-          <p style={{ fontFamily: fonts.sans, fontWeight: 300, fontSize: "1.1rem", lineHeight: 1.72, color: colors.gray, maxWidth: 640, margin: "0 0 40px" }}>
+          <p style={{ fontFamily: fonts.sans, fontWeight: 300, fontSize: "1.1rem", lineHeight: 1.72, color: colors.gray, maxWidth: 640, margin: "0 0 32px" }}>
             {category.intro}
           </p>
+          {category.coverage && (
+            <p style={{ fontFamily: fonts.sans, fontWeight: 500, fontSize: "0.85rem", letterSpacing: "0.02em", color: colors.gray, maxWidth: 640, margin: "0 0 32px" }}>
+              <span style={{ color: colors.grayLight, textTransform: "uppercase", letterSpacing: "0.1em", fontSize: 11, fontWeight: 600 }}>Coverage — </span>
+              {category.coverage}
+            </p>
+          )}
           <button type="button" onClick={() => setIsModalOpen(true)} style={darkButton}>
             Schedule a Call
           </button>
         </div>
       </section>
 
-      {/* OVERVIEW */}
-      <section style={{ background: "#fff", padding: "88px 48px", borderBottom: `1px solid ${colors.border}` }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "240px 1fr", gap: 48 }}>
-          <div style={eyebrow}>Overview</div>
-          <div>
-            <h2 style={sectionHeading}>What {category.shortName} covers, and why it matters.</h2>
-            <p style={sectionBody}>{category.intro}</p>
+      {/* TOPICS */}
+      <section style={{ padding: "88px 48px", borderBottom: `1px solid ${colors.border}` }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <div style={{ ...eyebrow, marginBottom: 40 }}>Our Services</div>
+          <div style={{ display: "grid", gap: 1, background: colors.border }}>
+            {category.topics.map((topic) => (
+              <div key={topic.title} style={{ background: "#fff", padding: "40px 40px" }}>
+                <h3 style={{ fontFamily: fonts.serif, fontWeight: 400, fontSize: "1.5rem", letterSpacing: "-0.01em", color: colors.ink, margin: "0 0 24px" }}>
+                  {topic.title}
+                </h3>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 40 }}>
+                  <div>
+                    <div style={detailLabel}>What It Is</div>
+                    <p style={detailBody}>{topic.whatItIs}</p>
+                  </div>
+                  <div>
+                    <div style={detailLabel}>How We Implement It</div>
+                    <p style={detailBody}>{topic.howWeImplement}</p>
+                  </div>
+                  <div>
+                    <div style={detailLabel}>Why It Matters</div>
+                    <p style={detailBody}>{topic.whyItMatters}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* SERVICES LIST */}
-      <section style={{ padding: "88px 48px", borderBottom: `1px solid ${colors.border}` }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          <div style={{ ...eyebrow, marginBottom: 40 }}>Our Approach</div>
-          {category.items.map((item) => (
-            <div key={item.number} id={`service-${item.number}`} style={{ borderTop: `1px solid ${colors.border}`, padding: "32px 0" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "56px 1fr", gap: 20, marginBottom: 20 }}>
-                <span style={{ fontFamily: fonts.serif, fontSize: "1.4rem", color: colors.grayLight }}>{item.number}</span>
-                <h3 style={{ fontFamily: fonts.sans, fontWeight: 500, fontSize: "1.15rem", color: colors.ink, margin: 0 }}>{item.title}</h3>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, maxWidth: 1080, marginLeft: 76 }}>
-                <div>
-                  <div style={detailLabel}>What We Do</div>
-                  <p style={detailBody}>{item.whatWeDo}</p>
-                </div>
-                <div>
-                  <div style={detailLabel}>How We Implement It</div>
-                  <p style={detailBody}>{item.howWeImplement}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* BUNDLE CALLOUT */}
+      {category.bundle && (
+        <section style={{ background: "#fff", padding: "64px 48px", borderBottom: `1px solid ${colors.border}` }}>
+          <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "240px 1fr", gap: 48 }}>
+            <div style={eyebrow}>Bundle & Save</div>
+            <p style={{ ...sectionBody, maxWidth: 820 }}>{category.bundle}</p>
+          </div>
+        </section>
+      )}
 
       {/* IMPLEMENTATION / BENEFITS */}
       <section style={{ background: "#fff", padding: "88px 48px", borderBottom: `1px solid ${colors.border}` }}>

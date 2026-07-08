@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { ScheduleModal } from "../components/ScheduleModal";
 import { LogoMarquee } from "../components/LogoMarquee";
 import { colors, fonts, STANDARDS } from "../theme";
+import { SERVICE_CATEGORIES } from "../data/categories";
 import isoLogo from "../assets/logos/iso.svg";
 import aicpaLogo from "../assets/logos/aicpa.png";
 import icaiLogo from "../assets/logos/icai.png";
@@ -27,6 +28,12 @@ const CLIENTS = [
   { name: "Sysarb", url: "https://sysarb.com", logo: sysarbLogo },
   { name: "Agile RL", url: "https://agilerl.com", logo: agilerlLogo },
   { name: "Acceleriad", url: "https://acceleraid.ai/", logo: acceleriadLogo },
+  { name: "Neurosensum", url: "https://neurosensum.com/" },
+  { name: "SuperAlign", url: "https://superalign.ai/" },
+  { name: "Sales PlayX", url: "https://salesplayx.com/" },
+  { name: "Time Tackle", url: "https://www.timetackle.com/" },
+  { name: "Neural Web", url: "https://www.neuralweb.tech/" },
+  { name: "Green Radar", url: "https://www.greenradar.com/" },
 ];
 
 const PARTNERS = [
@@ -57,8 +64,36 @@ const WHY_US = [
   },
 ];
 
+const PRACTICE_AREAS = [
+  {
+    label: "A",
+    title: "Certifications",
+    slugs: ["iso", "soc-2", "soc-1", "soc-3"],
+    desc: "ISO 27001 and adjacent standards, plus SOC 1, 2, and 3 audit readiness for technology and SaaS companies.",
+  },
+  {
+    label: "B",
+    title: "Indian Regulators",
+    slugs: ["dpdpa", "cert-in", "rbi-audit", "sebi-audit", "irdai-audit", "dot", "meity"],
+    desc: "DPDPA, CERT-In, RBI, SEBI, IRDAI, and DoT/TRAI compliance for regulated Indian entities.",
+  },
+  {
+    label: "C",
+    title: "Global GRC",
+    slugs: ["global-grc", "other-grc"],
+    desc: "GDPR, HIPAA, HITRUST, CCSS, virtual CISO leadership, and compliance automation tooling.",
+  },
+  {
+    label: "D",
+    title: "Audit & Tax",
+    slugs: ["audit-assurance", "tax", "financial-services", "forensic-audit"],
+    desc: "Internal, statutory, and risk-based audits, income tax and GST compliance, and forensic due diligence.",
+  },
+];
+
 export function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const totalServices = SERVICE_CATEGORIES.reduce((sum, c) => sum + c.topics.length, 0);
 
   return (
     <div style={{ background: colors.bg, minHeight: "100vh" }}>
@@ -114,10 +149,10 @@ export function LandingPage() {
           <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 48, marginBottom: 48 }}>
             <div style={eyebrow}>What We Do</div>
             <div>
-              <h2 style={sectionHeading}>Two practices. Forty-five ways we get you compliant — and keep you that way.</h2>
+              <h2 style={sectionHeading}>Four practices. {totalServices}+ ways we get you compliant — and keep you that way.</h2>
               <p style={sectionBody}>
-                ISO certification and enterprise GRC program work, delivered by a team that implements the standard,
-                not just audits against it.
+                Certifications, Indian regulatory compliance, global GRC programs, and audit &amp; tax services,
+                delivered by a team that implements the standard, not just audits against it.
               </p>
             </div>
           </div>
@@ -133,39 +168,35 @@ export function LandingPage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
+              gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
               gap: 1,
               background: colors.border,
               border: `1px solid ${colors.border}`,
             }}
           >
-            <div style={{ background: colors.bg, padding: "40px 36px", display: "flex", flexDirection: "column", gap: 16 }}>
-              <div style={{ fontFamily: fonts.serif, fontSize: "2rem", color: colors.grayLight }}>A</div>
-              <h3 style={cardHeading}>ISO Certification &amp; Standards</h3>
-              <p style={cardBody}>
-                25 services covering ISO 27001 ISMS implementation, cloud and privacy controls, business continuity,
-                and certification maintenance.
-              </p>
-              <a href="/services" style={cardLink}>
-                View Services →
-              </a>
-            </div>
-            <div style={{ background: colors.bg, padding: "40px 36px", display: "flex", flexDirection: "column", gap: 16 }}>
-              <div style={{ fontFamily: fonts.serif, fontSize: "2rem", color: colors.grayLight }}>B</div>
-              <h3 style={cardHeading}>GRC Program Services</h3>
-              <p style={cardBody}>
-                20 services covering enterprise risk, governance reporting, vendor risk, and compliance program
-                design.
-              </p>
-              <a href="/services" style={cardLink}>
-                View Services →
-              </a>
-            </div>
+            {PRACTICE_AREAS.map((area) => {
+              const serviceCount = area.slugs.reduce((sum, slug) => {
+                const cat = SERVICE_CATEGORIES.find((c) => c.slug === slug);
+                return sum + (cat?.topics.length ?? 0);
+              }, 0);
+              return (
+                <div key={area.label} style={{ background: colors.bg, padding: "40px 36px", display: "flex", flexDirection: "column", gap: 16 }}>
+                  <div style={{ fontFamily: fonts.serif, fontSize: "2rem", color: colors.grayLight }}>{area.label}</div>
+                  <h3 style={cardHeading}>{area.title}</h3>
+                  <p style={cardBody}>
+                    {serviceCount} service{serviceCount === 1 ? "" : "s"} — {area.desc}
+                  </p>
+                  <a href="/services" style={cardLink}>
+                    View Services →
+                  </a>
+                </div>
+              );
+            })}
           </div>
 
           <div style={{ marginTop: 40 }}>
             <a href="/services" style={{ ...darkButton, display: "inline-block", textDecoration: "none" }}>
-              View All 45 Services
+              View All {totalServices} Services
             </a>
           </div>
         </div>
