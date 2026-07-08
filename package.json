@@ -5,12 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "bun --hot ./index.ts",
-    "start": "bun ./index.ts"
+    "build": "node scripts/build.mjs",
+    "start": "node server.mjs"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3"
+    "@types/react-dom": "^19.2.3",
+    "esbuild": "^0.28.1"
   },
   "peerDependencies": {
     "typescript": "^5"
