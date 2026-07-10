@@ -4,7 +4,7 @@ import icaiLogo from "../assets/logos/icai.png";
 import accaLogo from "../assets/logos/acca.svg";
 import aicpaSocLogo from "../assets/logos/aicpa-soc.jpg";
 import dpdpaLogo from "../assets/logos/regulators/dpdpa.jpg";
-import certInLogo from "../assets/logos/regulators/cert-in.jpg";
+import certInLogo from "../assets/logos/regulators/cert-in.png";
 import rbiLogo from "../assets/logos/regulators/rbi.jpg";
 import sebiLogo from "../assets/logos/regulators/sebi.jpg";
 import irdaiLogo from "../assets/logos/regulators/irdai.jpg";
@@ -34,6 +34,7 @@ import kavyaPhoto from "../assets/team/kavya-samanthapudi.jpg";
 import sauravPhoto from "../assets/team/saurav-gupta.jpg";
 import jareenaPhoto from "../assets/team/jareena-begum.jpg";
 import karishmaPhoto from "../assets/team/karishma-shaik.jpg";
+import mohammadPhoto from "../assets/team/mohammad-saheb-shaik.jpg";
 
 export interface LogoItem {
   name: string;
@@ -135,6 +136,7 @@ export const TEAM: TeamMember[] = [
     photo: jareenaPhoto,
   },
   { name: "Karishma Shaik", credentials: "", title: "Business Development Officer", photo: karishmaPhoto },
+  { name: "Mohammad Saheb Shaik", credentials: "", title: "Senior SOC 2 Auditor", photo: mohammadPhoto },
 ];
 
 export const COMPANY_STATS = {

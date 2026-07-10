@@ -24,7 +24,7 @@ import {
   type Topic,
 } from "./services";
 import dpdpaLogo from "../assets/logos/regulators/dpdpa.jpg";
-import certInLogo from "../assets/logos/regulators/cert-in.jpg";
+import certInLogo from "../assets/logos/regulators/cert-in.png";
 import rbiLogo from "../assets/logos/regulators/rbi.jpg";
 import sebiLogo from "../assets/logos/regulators/sebi.jpg";
 import irdaiLogo from "../assets/logos/regulators/irdai.jpg";
