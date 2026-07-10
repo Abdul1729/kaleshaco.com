@@ -16,17 +16,29 @@ const panelInnerStyle = {
 };
 
 const SERVICE_SECTIONS = [
-  { title: "Certifications", slugs: ["iso", "soc-2", "soc-1", "soc-3"] },
+  { title: "Compliance Audits", slugs: ["soc-examinations", "iso-certifications", "gdpr", "pci-dss", "ccpa-cpra", "hitrust", "hipaa-hitech", "pentesting", "sox-itgc"] },
   { title: "Indian Regulators", slugs: ["dpdpa", "cert-in", "rbi-audit", "sebi-audit", "irdai-audit", "dot", "meity"] },
   { title: "Global GRC", slugs: ["global-grc", "other-grc"] },
   { title: "Audit & Tax", slugs: ["audit-assurance", "tax", "financial-services", "forensic-audit"] },
 ];
 
+const MENU_LABEL_OVERRIDES: Record<string, string> = {
+  "soc-examinations": "SOC 1, 2 & 3",
+};
+
+function ServiceMenuRow({ cat }: { cat: { slug: string; shortName: string } }) {
+  return (
+    <a href={`/services/${cat.slug}`} style={menuRow} className="kc-menu-row">
+      {MENU_LABEL_OVERRIDES[cat.slug] ?? cat.shortName}
+    </a>
+  );
+}
+
 export function ServicesMegaMenu() {
   return (
-    <div style={{ ...panelStyle, right: 0, width: 680 }}>
+    <div style={{ ...panelStyle, left: 0, width: 600 }}>
       <div style={panelInnerStyle}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", columnGap: 24, rowGap: 28 }}>
           {SERVICE_SECTIONS.map((section) => {
             const categories = section.slugs
               .map((slug) => SERVICE_CATEGORIES.find((c) => c.slug === slug))
@@ -35,9 +47,7 @@ export function ServicesMegaMenu() {
               <div key={section.title}>
                 <div style={sectionLabel}>{section.title}</div>
                 {categories.map((cat) => (
-                  <a key={cat.slug} href={`/services/${cat.slug}`} style={menuRow} className="kc-menu-row">
-                    {cat.shortName}
-                  </a>
+                  <ServiceMenuRow key={cat.slug} cat={cat} />
                 ))}
               </div>
             );

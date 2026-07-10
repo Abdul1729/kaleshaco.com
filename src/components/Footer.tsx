@@ -1,4 +1,6 @@
 import { colors, fonts } from "../theme";
+import companyLogo from "../assets/logo.jpg";
+import { STANDARDS_ADVISED, type LogoItem } from "../data/company";
 
 export function Footer({ full }: { full?: boolean }) {
   if (!full) {
@@ -46,9 +48,34 @@ export function Footer({ full }: { full?: boolean }) {
     );
   }
 
+  const logoGroups: { label: string; items: LogoItem[] }[] = [
+    { label: "Standards", items: STANDARDS_ADVISED.filter((s) => s.logo) },
+  ];
+
   return (
     <footer style={{ background: colors.ink, color: colors.bg, padding: "80px 48px 32px" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <div style={{ paddingBottom: 56, borderBottom: "1px solid rgba(255,255,255,0.15)" }}>
+          {logoGroups.map((group) => (
+            <div key={group.label} style={{ marginBottom: 36 }}>
+              <div style={footerLogoGroupLabel}>{group.label}</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+                {group.items.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={item.name}
+                    style={footerLogoTile}
+                  >
+                    <img src={item.logo} alt={item.name} style={{ height: 28, width: "auto", maxWidth: 110, objectFit: "contain" }} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
         <div
           style={{
             display: "grid",
@@ -59,9 +86,7 @@ export function Footer({ full }: { full?: boolean }) {
           }}
         >
           <div>
-            <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 15, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>
-              Kalesha &amp; Co
-            </div>
+            <img src={companyLogo} alt="Kalesha & Co" style={{ height: 36, width: "auto", display: "block", marginBottom: 16 }} />
             <p style={{ fontFamily: fonts.sans, fontWeight: 300, fontSize: "0.9rem", lineHeight: 1.7, color: colors.grayLight, maxWidth: 280, margin: "0 0 12px" }}>
               ISO certification and GRC advisory for technology and SaaS companies.
             </p>
@@ -115,7 +140,9 @@ export function Footer({ full }: { full?: boolean }) {
               <a href="https://www.linkedin.com/company/kaleshaco/" target="_blank" rel="noopener noreferrer" style={footerLink}>
                 LinkedIn
               </a>
-              <div style={{ fontFamily: fonts.sans, fontWeight: 400, fontSize: "0.9rem", color: colors.grayLight }}>Montana, USA</div>
+              <div style={{ fontFamily: fonts.sans, fontWeight: 400, fontSize: "0.85rem", lineHeight: 1.6, color: colors.grayLight, maxWidth: 240 }}>
+                Door No 6-375, Opp Municipal Office, Chilakaluripet, Palnadu District, Andhra Pradesh, India, 522616
+              </div>
             </div>
           </div>
         </div>
@@ -131,6 +158,27 @@ export function Footer({ full }: { full?: boolean }) {
     </footer>
   );
 }
+
+const footerLogoGroupLabel = {
+  fontFamily: fonts.sans,
+  fontWeight: 600,
+  fontSize: 11,
+  letterSpacing: "0.12em",
+  textTransform: "uppercase" as const,
+  color: colors.grayLight,
+  marginBottom: 14,
+};
+
+const footerLogoTile = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: 56,
+  minWidth: 110,
+  padding: "0 18px",
+  background: "#fff",
+  border: "1px solid rgba(255,255,255,0.08)",
+};
 
 const footerHeading = {
   fontFamily: fonts.sans,

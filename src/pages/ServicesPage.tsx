@@ -2,13 +2,16 @@ import { useState } from "react";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { ScheduleModal } from "../components/ScheduleModal";
+import { FAQSection } from "../components/FAQSection";
+import { HeroBackdrop } from "../components/HeroBackdrop";
 import { colors, fonts } from "../theme";
 import { SERVICE_CATEGORIES } from "../data/categories";
+import { GENERAL_FAQS } from "../data/faqs";
 
 const SECTIONS = [
   {
-    title: "Certifications",
-    slugs: ["iso", "soc-2", "soc-1", "soc-3"],
+    title: "Compliance Audits",
+    slugs: ["soc-examinations", "iso-certifications", "gdpr", "pci-dss", "ccpa-cpra", "hitrust", "hipaa-hitech", "pentesting", "sox-itgc"],
   },
   {
     title: "Indian Regulators",
@@ -33,8 +36,9 @@ export function ServicesPage() {
       <Nav onScheduleCall={() => setIsModalOpen(true)} />
 
       {/* HEADER */}
-      <section style={{ padding: "96px 48px 64px", borderBottom: `1px solid ${colors.border}` }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+      <section style={{ position: "relative", padding: "96px 48px 64px", overflow: "hidden", borderBottom: `1px solid ${colors.border}` }}>
+        <HeroBackdrop />
+        <div style={{ position: "relative", maxWidth: 1280, margin: "0 auto" }}>
           <div style={eyebrow}>Services</div>
           <h1
             style={{
@@ -82,6 +86,9 @@ export function ServicesPage() {
           })}
         </div>
       </section>
+
+      {/* FAQ */}
+      <FAQSection faqs={GENERAL_FAQS} />
 
       {/* CTA */}
       <section style={{ background: colors.ink, padding: "104px 48px" }}>

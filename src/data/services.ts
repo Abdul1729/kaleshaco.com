@@ -67,6 +67,69 @@ export const SOC_3_TOPIC: Topic = {
 
 export const SOC_TOPICS: Topic[] = [SOC_1_TOPIC, SOC_2_TOPIC, SOC_3_TOPIC];
 
+export const SOC_EXAMINATIONS_TOPIC: Topic = {
+  title: "SOC Examinations",
+  whatItIs: "Assessed across three types — SOC 1, 2, and 3. SOC 1 examines controls for financial reporting accuracy. SOC 2 evaluates security, availability, processing integrity, confidentiality, and privacy — particularly valuable for service providers handling sensitive data. SOC 3 provides public-distribution-ready, high-level overviews of the same control areas.",
+  howWeImplement: "Scope the relevant report type (SOC 1, 2, or 3) → gap assessment against the applicable Trust Services Criteria or control objectives → control design and evidence collection → CPA firm engagement for the formal Type 1 or Type 2 examination.",
+  whyItMatters: "SOC 1 fits finance-impact services (payroll, fund administration, payment processing). SOC 2 is the report enterprise SaaS and technology clients ask for first. SOC 3 is a free-to-publish trust badge once a SOC 2 Type 2 is complete.",
+};
+
+export const ISO_CERTIFICATIONS_TOPIC: Topic = {
+  title: "ISO Certifications",
+  whatItIs: "Multiple standards offered, including ISO/IEC 27001 (information security management), ISO/IEC 27017/27018 (cloud security and privacy), ISO/IEC 27701 (privacy management extension), and ISO/IEC 42001 (artificial intelligence management). These demonstrate organizational commitment to security standards and risk management.",
+  howWeImplement: "Standard selection based on scope and client requirements → gap assessment against the relevant Annex A / control set → documentation and control implementation → internal audit and management review → certification body audit support (Stage 1 & 2).",
+  whyItMatters: "A recognized, accredited certification signals security maturity to enterprise customers, partners, and regulators — often a prerequisite for closing deals with larger clients.",
+};
+
+export const GDPR_TOPIC: Topic = {
+  title: "GDPR",
+  whatItIs: "Services assist organizations in understanding obligations under EU data protection regulation, assessing data processing activities, and implementing appropriate compliance measures to protect the personal data of individuals in the European Union.",
+  howWeImplement: "Data processing activity assessment → gap analysis against GDPR obligations → compliance measure implementation (lawful basis, data subject rights, breach response) → ongoing monitoring.",
+  whyItMatters: "Non-compliance carries fines up to €20M or 4% of global turnover — assessment and implementation support reduces regulatory exposure for any organization handling EU personal data.",
+};
+
+export const PCI_DSS_TOPIC: Topic = {
+  title: "PCI DSS",
+  whatItIs: "Security standards ensuring secure credit card information handling. Services help merchants and service providers achieve and maintain compliance, reducing data breach risk and financial penalties while safeguarding sensitive payment data.",
+  howWeImplement: "Scope determination (merchant/service provider level) → gap assessment against the applicable PCI DSS requirements → remediation support → Self-Assessment Questionnaire (SAQ) or formal Report on Compliance (RoC) support.",
+  whyItMatters: "Required by card brands for any organization storing, processing, or transmitting cardholder data — non-compliance risks fines, higher transaction fees, and loss of card processing privileges.",
+};
+
+export const CCPA_CPRA_TOPIC: Topic = {
+  title: "CCPA & CPRA",
+  whatItIs: "California privacy law services helping businesses understand consumer rights and organizational obligations. Assistance includes compliance implementation and avoiding potential penalties while protecting consumer privacy rights.",
+  howWeImplement: "Data inventory and processing activity review → consumer rights request workflow (access, deletion, opt-out) → privacy notice and disclosure updates → vendor/service provider contract review.",
+  whyItMatters: "Applies to any business meeting CCPA/CPRA thresholds handling California consumer data — non-compliance risks statutory penalties and private right of action exposure.",
+};
+
+export const HITRUST_TOPIC: Topic = {
+  title: "HITRUST",
+  whatItIs: "A comprehensive healthcare cybersecurity framework for assessing security posture and achieving certification. Services demonstrate compliance with industry standards while ensuring patient data protection against healthcare-related risks.",
+  howWeImplement: "Readiness assessment → control gap remediation → evidence collection → engagement with a HITRUST-authorized external assessor → validated assessment (r2 or i1 report).",
+  whyItMatters: "Certification issued by the HITRUST Alliance via an authorized assessor — a strong market trust signal for US health-tech vendors and a common requirement from healthcare enterprise clients.",
+};
+
+export const HIPAA_HITECH_TOPIC: Topic = {
+  title: "HIPAA/HITECH",
+  whatItIs: "Healthcare regulation compliance services establishing standards for protecting healthcare information. Services ensure regulatory adherence and safeguard sensitive patient data against breaches.",
+  howWeImplement: "Security Risk Assessment (SRA) → administrative, physical, and technical safeguard implementation → Business Associate Agreement (BAA) review → breach notification procedure → workforce training.",
+  whyItMatters: "Enforced by HHS OCR with tier-based penalties — an attestation or audit-readiness report is the common ask from US healthcare clients and partners.",
+};
+
+export const PENTESTING_TOPIC: Topic = {
+  title: "PenTesting",
+  whatItIs: "Ethical hacking simulating real-world cyberattacks to identify vulnerabilities in systems, networks, and applications. Services enable organizations to proactively discover and remediate security weaknesses before exploitation.",
+  howWeImplement: "Scope and rules of engagement definition → reconnaissance and vulnerability identification → controlled exploitation attempts → findings report with remediation guidance → retest on request.",
+  whyItMatters: "Required or expected evidence for SOC 2, ISO 27001, PCI DSS, and most enterprise security questionnaires — proactive discovery beats being found by an attacker first.",
+};
+
+export const SOX_ITGC_TOPIC: Topic = {
+  title: "SOX ITGC Testing",
+  whatItIs: "Structured IT General Controls assessments for publicly traded companies meeting Sarbanes-Oxley requirements. Services evaluate internal controls over financial reporting, providing auditors with clear operational control documentation.",
+  howWeImplement: "ITGC scoping (access management, change management, IT operations) → control design and operating effectiveness testing → deficiency identification and remediation tracking → evidence package for external auditors.",
+  whyItMatters: "A statutory requirement for public companies — clean ITGC testing results support the external financial statement audit and reduce the risk of a material weakness finding.",
+};
+
 export const CERT_IN_TOPICS: Topic[] = [
   {
     title: "6-Hour Incident Reporting & Log Management Setup",

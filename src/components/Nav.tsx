@@ -1,6 +1,7 @@
 import { useState, type CSSProperties } from "react";
 import { colors, fonts } from "../theme";
 import { ServicesMegaMenu, CompanyMegaMenu } from "./MegaMenu";
+import companyLogo from "../assets/logo.jpg";
 
 export function Nav({ onScheduleCall }: { onScheduleCall?: () => void }) {
   const [openMenu, setOpenMenu] = useState<"services" | "company" | null>(null);
@@ -30,19 +31,8 @@ export function Nav({ onScheduleCall }: { onScheduleCall?: () => void }) {
           flexWrap: "wrap",
         }}
       >
-        <a
-          href="/"
-          style={{
-            fontFamily: fonts.sans,
-            fontWeight: 600,
-            fontSize: 15,
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-            color: colors.ink,
-            textDecoration: "none",
-          }}
-        >
-          Kalesha &amp; Co
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+          <img src={companyLogo} alt="Kalesha & Co" style={{ height: 40, width: "auto", display: "block" }} />
         </a>
         <div style={{ display: "flex", alignItems: "center", gap: 36, flexWrap: "wrap" }}>
           <div style={{ position: "relative" }} onMouseEnter={() => setOpenMenu("services")} onMouseLeave={() => setOpenMenu(null)}>

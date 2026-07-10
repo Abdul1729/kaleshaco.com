@@ -18,6 +18,15 @@ import service_audit_assurance from "./services/audit-assurance.html";
 import service_tax from "./services/tax.html";
 import service_financial_services from "./services/financial-services.html";
 import service_forensic_audit from "./services/forensic-audit.html";
+import service_soc_examinations from "./services/soc-examinations.html";
+import service_iso_certifications from "./services/iso-certifications.html";
+import service_gdpr from "./services/gdpr.html";
+import service_pci_dss from "./services/pci-dss.html";
+import service_ccpa_cpra from "./services/ccpa-cpra.html";
+import service_hitrust from "./services/hitrust.html";
+import service_hipaa_hitech from "./services/hipaa-hitech.html";
+import service_pentesting from "./services/pentesting.html";
+import service_sox_itgc from "./services/sox-itgc.html";
 
 import company_about from "./company/about.html";
 import company_leadership from "./company/leadership.html";
@@ -47,6 +56,15 @@ const server = Bun.serve({
     "/services/tax": service_tax,
     "/services/financial-services": service_financial_services,
     "/services/forensic-audit": service_forensic_audit,
+    "/services/soc-examinations": service_soc_examinations,
+    "/services/iso-certifications": service_iso_certifications,
+    "/services/gdpr": service_gdpr,
+    "/services/pci-dss": service_pci_dss,
+    "/services/ccpa-cpra": service_ccpa_cpra,
+    "/services/hitrust": service_hitrust,
+    "/services/hipaa-hitech": service_hipaa_hitech,
+    "/services/pentesting": service_pentesting,
+    "/services/sox-itgc": service_sox_itgc,
 
     "/company/about": company_about,
     "/company/leadership": company_leadership,

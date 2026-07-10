@@ -3,66 +3,14 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { ScheduleModal } from "../components/ScheduleModal";
 import { LogoMarquee } from "../components/LogoMarquee";
+import { FAQSection } from "../components/FAQSection";
 import { colors, fonts, STANDARDS } from "../theme";
 import { SERVICE_CATEGORIES } from "../data/categories";
+import { CLIENTS, PARTNERS, STANDARDS_ADVISED, TEAM_CREDENTIALS, WHY_US, TEAM } from "../data/company";
+import { GENERAL_FAQS } from "../data/faqs";
 import isoLogo from "../assets/logos/iso.svg";
 import aicpaLogo from "../assets/logos/aicpa.png";
 import icaiLogo from "../assets/logos/icai.png";
-import accaLogo from "../assets/logos/acca.svg";
-import bliroLogo from "../assets/logos/companies/bliro.svg";
-import dotfileLogo from "../assets/logos/companies/dotfile.svg";
-import ethiackLogo from "../assets/logos/companies/ethiack.svg";
-import sysarbLogo from "../assets/logos/companies/sysarb.svg";
-import agilerlLogo from "../assets/logos/companies/agilerl.svg";
-import acceleriadLogo from "../assets/logos/companies/acceleriad.png";
-import fivetattvaLogo from "../assets/logos/companies/5tattva.png";
-import accedereLogo from "../assets/logos/companies/accedere.png";
-import techowlLogo from "../assets/logos/companies/techowl.png";
-import acurateGlobalLogo from "../assets/logos/companies/acurate-global.png";
-
-const CLIENTS = [
-  { name: "Bliro", url: "https://bliro.io", logo: bliroLogo },
-  { name: "Cobrainer", url: "https://cobrainer.com" },
-  { name: "Dotfile", url: "https://dotfile.com", logo: dotfileLogo },
-  { name: "Ethiack", url: "https://ethiack.com", logo: ethiackLogo },
-  { name: "Sysarb", url: "https://sysarb.com", logo: sysarbLogo },
-  { name: "Agile RL", url: "https://agilerl.com", logo: agilerlLogo },
-  { name: "Acceleriad", url: "https://acceleraid.ai/", logo: acceleriadLogo },
-  { name: "Neurosensum", url: "https://neurosensum.com/" },
-  { name: "SuperAlign", url: "https://superalign.ai/" },
-  { name: "Sales PlayX", url: "https://salesplayx.com/" },
-  { name: "Time Tackle", url: "https://www.timetackle.com/" },
-  { name: "Neural Web", url: "https://www.neuralweb.tech/" },
-  { name: "Green Radar", url: "https://www.greenradar.com/" },
-];
-
-const PARTNERS = [
-  { name: "5tattva", url: "https://5tattva.com", logo: fivetattvaLogo },
-  { name: "Accedere", url: "https://accedere.io", logo: accedereLogo },
-  { name: "Auriseg", url: "https://auriseg.com" },
-  { name: "Vulnuris", url: "https://vulnuris.in" },
-  { name: "TechOwl Infosec", url: "https://techowl.com", logo: techowlLogo },
-  { name: "Acurate Global Inc", url: "https://accurateiso.com/", logo: acurateGlobalLogo },
-];
-
-const WHY_US = [
-  {
-    title: "Licensed CPAs, Technical Fluency",
-    desc: "Every engagement is led by CPAs who understand cloud infrastructure and access controls — not just accounting standards.",
-  },
-  {
-    title: "SaaS & Technology Focus",
-    desc: "We work exclusively with technology companies, so recommendations reflect how modern software businesses actually run.",
-  },
-  {
-    title: "Direct Partner Access",
-    desc: "You work directly with a partner from scoping through sign-off — no hand-off to a rotating bench of staff.",
-  },
-  {
-    title: "Montana-Based, National Reach",
-    desc: "Domiciled in Montana and licensed to serve technology clients across the United States.",
-  },
-];
 
 const PRACTICE_AREAS = [
   {
@@ -70,29 +18,34 @@ const PRACTICE_AREAS = [
     title: "Certifications",
     slugs: ["iso", "soc-2", "soc-1", "soc-3"],
     desc: "ISO 27001 and adjacent standards, plus SOC 1, 2, and 3 audit readiness for technology and SaaS companies.",
+    logos: [isoLogo, aicpaLogo],
   },
   {
     label: "B",
     title: "Indian Regulators",
     slugs: ["dpdpa", "cert-in", "rbi-audit", "sebi-audit", "irdai-audit", "dot", "meity"],
     desc: "DPDPA, CERT-In, RBI, SEBI, IRDAI, and DoT/TRAI compliance for regulated Indian entities.",
+    logos: [],
   },
   {
     label: "C",
     title: "Global GRC",
     slugs: ["global-grc", "other-grc"],
     desc: "GDPR, HIPAA, HITRUST, CCSS, virtual CISO leadership, and compliance automation tooling.",
+    logos: [],
   },
   {
     label: "D",
     title: "Audit & Tax",
     slugs: ["audit-assurance", "tax", "financial-services", "forensic-audit"],
     desc: "Internal, statutory, and risk-based audits, income tax and GST compliance, and forensic due diligence.",
+    logos: [icaiLogo],
   },
 ];
 
 export function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [flippedArea, setFlippedArea] = useState<string | null>(null);
   const totalServices = SERVICE_CATEGORIES.reduce((sum, c) => sum + c.topics.length, 0);
 
   return (
@@ -112,7 +65,7 @@ export function LandingPage() {
           }}
         />
         <div style={{ position: "relative", maxWidth: 1280, margin: "0 auto" }}>
-          <div style={eyebrow}>ISO Certification &amp; GRC Services — Montana, USA</div>
+          <div style={eyebrow}>ISO Certification &amp; GRC Services</div>
           <h1
             style={{
               fontFamily: fonts.serif,
@@ -179,16 +132,107 @@ export function LandingPage() {
                 const cat = SERVICE_CATEGORIES.find((c) => c.slug === slug);
                 return sum + (cat?.topics.length ?? 0);
               }, 0);
+              const isFlipped = flippedArea === area.label;
               return (
-                <div key={area.label} style={{ background: colors.bg, padding: "40px 36px", display: "flex", flexDirection: "column", gap: 16 }}>
-                  <div style={{ fontFamily: fonts.serif, fontSize: "2rem", color: colors.grayLight }}>{area.label}</div>
-                  <h3 style={cardHeading}>{area.title}</h3>
-                  <p style={cardBody}>
-                    {serviceCount} service{serviceCount === 1 ? "" : "s"} — {area.desc}
-                  </p>
-                  <a href="/services" style={cardLink}>
-                    View Services →
-                  </a>
+                <div
+                  key={area.label}
+                  onClick={() => setFlippedArea(isFlipped ? null : area.label)}
+                  style={{ position: "relative", height: 280, perspective: 1400, cursor: "pointer" }}
+                >
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
+                      transformStyle: "preserve-3d",
+                      transition: "transform 0.7s cubic-bezier(.4,.1,.2,1)",
+                      transform: `rotateY(${isFlipped ? 180 : 0}deg)`,
+                    }}
+                  >
+                    {/* FRONT */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        backfaceVisibility: "hidden",
+                        background: colors.bg,
+                        padding: "40px 36px",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 16,
+                      }}
+                    >
+                      <div style={{ fontFamily: fonts.serif, fontSize: "2rem", color: colors.grayLight }}>{area.label}</div>
+                      <h3 style={cardHeading}>{area.title}</h3>
+                      <p style={cardBody}>
+                        {serviceCount} service{serviceCount === 1 ? "" : "s"} — {area.desc}
+                      </p>
+                      <div style={{ ...cardLink, marginTop: 8 }}>Tap for standards →</div>
+                    </div>
+                    {/* BACK */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        backfaceVisibility: "hidden",
+                        transform: "rotateY(180deg)",
+                        background: colors.ink,
+                        padding: 32,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 20,
+                      }}
+                    >
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
+                        {area.logos.map((logo, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              width: 56,
+                              height: 56,
+                              background: "#fff",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              padding: 8,
+                            }}
+                          >
+                            <img src={logo} alt="" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                          </div>
+                        ))}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: fonts.sans,
+                          fontWeight: 600,
+                          fontSize: 11,
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          color: colors.bg,
+                          textAlign: "center",
+                        }}
+                      >
+                        {area.title}
+                      </div>
+                      <a
+                        href="/services"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                          fontFamily: fonts.sans,
+                          fontWeight: 500,
+                          fontSize: 11,
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase",
+                          color: colors.bg,
+                          textDecoration: "underline",
+                        }}
+                      >
+                        View Services →
+                      </a>
+                    </div>
+                  </div>
                 </div>
               );
             })}
@@ -228,33 +272,12 @@ export function LandingPage() {
           </div>
         </div>
 
-        <div
-          style={{
-            maxWidth: 860,
-            margin: "88px auto 0",
-            paddingTop: 56,
-            borderTop: `1px solid ${colors.border}`,
-            display: "grid",
-            gridTemplateColumns: "repeat(2,1fr)",
-            gap: 48,
-          }}
-        >
-          <CredentialColumn
-            title="Standards We Advise On"
-            items={[
-              { label: "ISO 27001", logo: isoLogo },
-              { label: "ISO 9001", logo: isoLogo },
-              { label: "SOC 2 Type II", logo: aicpaLogo },
-            ]}
-          />
-          <CredentialColumn
-            title="Team Credentials"
-            items={[
-              { label: "ICAI", logo: icaiLogo },
-              { label: "ACCA", logo: accaLogo },
-              { label: "CPA", logo: aicpaLogo },
-            ]}
-          />
+        <div style={{ maxWidth: 1280, margin: "88px auto 0", paddingTop: 56, borderTop: `1px solid ${colors.border}` }}>
+          <div style={{ ...credentialLabel, marginBottom: 24 }}>Standards We Advise On</div>
+          <LogoGrid items={STANDARDS_ADVISED} showCaption />
+
+          <div style={{ ...credentialLabel, margin: "56px 0 24px" }}>Team Credentials</div>
+          <LogoGrid items={TEAM_CREDENTIALS} />
         </div>
       </section>
 
@@ -288,31 +311,57 @@ export function LandingPage() {
           <div style={{ ...eyebrow, marginBottom: 24 }}>The Team</div>
           <h2 style={{ ...sectionHeading, maxWidth: 760, marginBottom: 56 }}>The people behind the opinion.</h2>
 
-          <div style={{ position: "relative", border: `1px solid ${colors.border}` }}>
-            <div
-              style={{
-                width: "100%",
-                height: "clamp(320px,42vw,560px)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                background: colors.bgAlt,
-                color: colors.grayLight,
-                fontFamily: fonts.sans,
-                fontSize: 13,
-              }}
-            >
-              Team photo
+          <div style={{ background: colors.ink, color: colors.bg, padding: "28px 32px", marginBottom: 1 }}>
+            <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: colors.grayLight, marginBottom: 8 }}>
+              Kalesha &amp; Co — Andhra Pradesh, India
             </div>
-            <div style={{ position: "absolute", left: 0, bottom: 0, background: colors.ink, color: colors.bg, padding: "24px 32px", maxWidth: 420 }}>
-              <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: colors.grayLight, marginBottom: 8 }}>
-                Kalesha &amp; Co — Montana, USA
-              </div>
-              <div style={{ fontFamily: fonts.serif, fontWeight: 400, fontSize: "1.5rem", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
-                Audit, advisory, and compliance — under one roof.
-              </div>
+            <div style={{ fontFamily: fonts.serif, fontWeight: 400, fontSize: "1.5rem", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
+              Audit, advisory, and compliance — under one roof.
             </div>
           </div>
+
+          <div
+            className="kc-marquee-viewport"
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              margin: "0 -48px",
+              padding: "0 48px",
+              WebkitMaskImage: "linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent)",
+              maskImage: "linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent)",
+            }}
+          >
+            <div
+              className="kc-marquee-track"
+              style={{ display: "flex", width: "max-content", gap: 20, ["--kc-marquee-duration" as string]: "42s" }}
+            >
+              {[...TEAM, ...TEAM].map((member, i) => (
+                <div
+                  key={`${member.name}-${i}`}
+                  aria-hidden={i >= TEAM.length ? "true" : undefined}
+                  tabIndex={i >= TEAM.length ? -1 : undefined}
+                  className="kc-team-card"
+                  style={{ flexShrink: 0, width: 230, background: "#fff", border: `1px solid ${colors.border}` }}
+                >
+                  <div style={{ width: "100%", aspectRatio: "4/5", overflow: "hidden", background: colors.bgAlt }}>
+                    <img src={member.photo} alt={member.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </div>
+                  <div style={{ padding: "18px 20px" }}>
+                    <div style={{ fontFamily: fonts.serif, fontWeight: 400, fontSize: "1.1rem", letterSpacing: "-0.01em", color: colors.ink, marginBottom: 6 }}>
+                      {member.name}
+                    </div>
+                    <div style={{ fontFamily: fonts.sans, fontWeight: 500, fontSize: 10, letterSpacing: "0.06em", textTransform: "uppercase", color: colors.grayLight, lineHeight: 1.5 }}>
+                      {member.credentials}
+                    </div>
+                    <div style={{ fontFamily: fonts.sans, fontWeight: 300, fontSize: "0.82rem", color: colors.gray, marginTop: 6, lineHeight: 1.4 }}>
+                      {member.title}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 32 }}>
             <div style={tagSmall}>Audit</div>
             <div style={tagSmall}>Advisory</div>
@@ -320,6 +369,9 @@ export function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <FAQSection faqs={GENERAL_FAQS} />
 
       {/* CONTACT / CTA */}
       <section
@@ -382,25 +434,62 @@ export function LandingPage() {
   );
 }
 
-interface CredentialItem {
-  label: string;
-  logo: string;
-}
-
-function CredentialColumn({ title, items }: { title: string; items: CredentialItem[] }) {
+function LogoGrid({ items, showCaption }: { items: { name: string; url: string; logo?: string }[]; showCaption?: boolean }) {
   return (
-    <div>
-      <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: colors.grayLight, marginBottom: 18 }}>
-        {title}
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {items.map((item) => (
-          <div key={item.label} style={logoTag}>
-            <img src={item.logo} alt={item.label} style={{ height: 20, width: "auto", maxWidth: 72, objectFit: "contain" }} />
-            <span>{item.label}</span>
-          </div>
-        ))}
-      </div>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 14 }}>
+      {items.map((item) => (
+        <a
+          key={item.name}
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="kc-logo-card"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+            height: showCaption ? 116 : 88,
+            padding: "16px 24px",
+            border: `1px solid ${colors.border}`,
+            background: "#fff",
+            textDecoration: "none",
+          }}
+        >
+          {item.logo ? (
+            <img src={item.logo} alt={item.name} style={{ height: 32, width: "auto", maxWidth: 140, objectFit: "contain" }} />
+          ) : (
+            <span
+              style={{
+                fontFamily: fonts.sans,
+                fontWeight: 500,
+                fontSize: 13,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                color: colors.ink,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {item.name}
+            </span>
+          )}
+          {showCaption && item.logo && (
+            <span
+              style={{
+                fontFamily: fonts.sans,
+                fontWeight: 400,
+                fontSize: 11,
+                letterSpacing: "0.02em",
+                color: colors.gray,
+                textAlign: "center",
+              }}
+            >
+              {item.name}
+            </span>
+          )}
+        </a>
+      ))}
     </div>
   );
 }
@@ -475,18 +564,13 @@ const tag = {
   color: colors.ink,
 };
 
-const logoTag = {
-  display: "flex",
-  alignItems: "center",
-  gap: 10,
-  border: `1px solid ${colors.border}`,
-  padding: "10px 16px",
+const credentialLabel = {
   fontFamily: fonts.sans,
-  fontWeight: 500,
-  fontSize: 11,
-  letterSpacing: "0.06em",
+  fontWeight: 600,
+  fontSize: 12,
+  letterSpacing: "0.12em",
   textTransform: "uppercase" as const,
-  color: colors.ink,
+  color: colors.grayLight,
 };
 
 const tagSmall = {
