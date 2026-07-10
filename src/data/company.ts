@@ -37,6 +37,7 @@ import karishmaPhoto from "../assets/team/karishma-shaik.jpg";
 import mohammadPhoto from "../assets/team/mohammad-saheb-shaik.jpg";
 import shafiPhoto from "../assets/team/shafi-shaik.jpg";
 import mohammedRafiPhoto from "../assets/team/mohammed-rafi.jpg";
+import karimuPhoto from "../assets/team/shaik-karimu.jpg";
 
 export interface LogoItem {
   name: string;
@@ -141,6 +142,7 @@ export const TEAM: TeamMember[] = [
   { name: "Mohammad Saheb Shaik", credentials: "", title: "Senior SOC 2 Auditor", photo: mohammadPhoto },
   { name: "Shafi Shaik", credentials: "", title: "GRC Consultant", photo: shafiPhoto },
   { name: "Mohammed Rafi", credentials: "", title: "GRC Consultant", photo: mohammedRafiPhoto },
+  { name: "Shaik Karimu", credentials: "", title: "Consultant", photo: karimuPhoto },
 ];
 
 export const COMPANY_STATS = {
