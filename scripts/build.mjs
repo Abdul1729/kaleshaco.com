@@ -42,6 +42,7 @@ await esbuild.build({
   loader: {
     ".png": "file",
     ".svg": "file",
+    ".jpg": "file",
   },
   assetNames: "assets/[name]-[hash]",
   chunkNames: "chunks/[name]-[hash]",
