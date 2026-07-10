@@ -2,6 +2,21 @@ import isoLogo from "../assets/logos/iso.svg";
 import aicpaLogo from "../assets/logos/aicpa.png";
 import icaiLogo from "../assets/logos/icai.png";
 import accaLogo from "../assets/logos/acca.svg";
+import aicpaSocLogo from "../assets/logos/aicpa-soc.jpg";
+import dpdpaLogo from "../assets/logos/regulators/dpdpa.jpg";
+import certInLogo from "../assets/logos/regulators/cert-in.jpg";
+import rbiLogo from "../assets/logos/regulators/rbi.jpg";
+import sebiLogo from "../assets/logos/regulators/sebi.jpg";
+import irdaiLogo from "../assets/logos/regulators/irdai.jpg";
+import traiLogo from "../assets/logos/regulators/trai.jpg";
+import meityLogo from "../assets/logos/regulators/meity.jpg";
+import gdprLogo from "../assets/logos/regulators/gdpr.jpg";
+import pciDssLogo from "../assets/logos/regulators/pci-dss.jpg";
+import ccpaCpraLogo from "../assets/logos/regulators/ccpa-cpra.jpg";
+import hitrustLogo from "../assets/logos/regulators/hitrust.jpg";
+import hipaaLogo from "../assets/logos/regulators/hipaa.jpg";
+import pentestingLogo from "../assets/logos/regulators/pentesting.jpg";
+import soxLogo from "../assets/logos/regulators/sox.jpg";
 import bliroLogo from "../assets/logos/companies/bliro.svg";
 import dotfileLogo from "../assets/logos/companies/dotfile.svg";
 import ethiackLogo from "../assets/logos/companies/ethiack.svg";
@@ -53,7 +68,21 @@ export const PARTNERS: LogoItem[] = [
 
 export const STANDARDS_ADVISED: LogoItem[] = [
   { name: "ISO 27001, 27701, 22301, 20000-1, 9001, 31000, 42001", url: "https://www.iso.org/", logo: isoLogo },
-  { name: "SOC 1, SOC 2 Type II", url: "https://www.aicpa-cima.com/", logo: aicpaLogo },
+  { name: "SOC 1, SOC 2, SOC 3", url: "https://www.aicpa-cima.com/", logo: aicpaSocLogo },
+  { name: "GDPR", url: "https://gdpr.eu/", logo: gdprLogo },
+  { name: "HIPAA / HITECH", url: "https://www.hhs.gov/hipaa/", logo: hipaaLogo },
+  { name: "HITRUST CSF", url: "https://hitrustalliance.net/", logo: hitrustLogo },
+  { name: "PCI DSS", url: "https://www.pcisecuritystandards.org/", logo: pciDssLogo },
+  { name: "CCPA / CPRA", url: "https://cppa.ca.gov/", logo: ccpaCpraLogo },
+  { name: "SOX ITGC", url: "https://www.sec.gov/", logo: soxLogo },
+  { name: "Penetration Testing", url: "/services/pentesting", logo: pentestingLogo },
+  { name: "DPDPA", url: "https://www.meity.gov.in/", logo: dpdpaLogo },
+  { name: "CERT-In", url: "https://www.cert-in.org.in/", logo: certInLogo },
+  { name: "RBI", url: "https://www.rbi.org.in/", logo: rbiLogo },
+  { name: "SEBI", url: "https://www.sebi.gov.in/", logo: sebiLogo },
+  { name: "IRDAI", url: "https://irdai.gov.in/", logo: irdaiLogo },
+  { name: "TRAI / DoT", url: "https://www.trai.gov.in/", logo: traiLogo },
+  { name: "MeitY", url: "https://www.meity.gov.in/", logo: meityLogo },
 ];
 
 export const TEAM_CREDENTIALS: LogoItem[] = [
