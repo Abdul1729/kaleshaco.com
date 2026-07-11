@@ -31,7 +31,7 @@ function collectHtml(dir) {
 
 HTML_PAGES.push(...collectHtml("company"), ...collectHtml("services"));
 
-await esbuild.build({
+const result = await esbuild.build({
   entryPoints: Object.entries(ENTRIES).map(([name, entry]) => ({ in: entry, out: name })),
   bundle: true,
   outdir: DIST,
@@ -39,6 +39,7 @@ await esbuild.build({
   splitting: true,
   minify: true,
   sourcemap: false,
+  metafile: true,
   loader: {
     ".png": "file",
     ".svg": "file",
@@ -46,16 +47,33 @@ await esbuild.build({
   },
   assetNames: "assets/[name]-[hash]",
   chunkNames: "chunks/[name]-[hash]",
-  entryNames: "[name]",
+  entryNames: "[name]-[hash]",
   jsx: "automatic",
 });
 
+// esbuild's entryNames hash makes every deploy produce new filenames for the
+// entry JS/CSS, so the CDN's long max-age cache can never serve a stale build.
+const entryOutputs = {};
+for (const [outPath, info] of Object.entries(result.metafile.outputs)) {
+  if (!info.entryPoint) continue;
+  const entryName = Object.keys(ENTRIES).find((name) => info.entryPoint === ENTRIES[name]);
+  if (!entryName) continue;
+  const relPath = path.relative(DIST, path.join(ROOT, outPath));
+  const ext = path.extname(relPath).slice(1);
+  entryOutputs[entryName] ??= {};
+  entryOutputs[entryName][ext] = relPath;
+  if (info.cssBundle) {
+    entryOutputs[entryName].css = path.relative(DIST, path.join(ROOT, info.cssBundle));
+  }
+}
+
 for (const page of HTML_PAGES) {
   const html = readFileSync(path.join(ROOT, page.src), "utf8");
+  const { js, css } = entryOutputs[page.entry];
   const rewritten = html
     .replace(
       /<script type="module" src="[^"]*"><\/script>/,
-      `<link rel="stylesheet" href="/${page.entry}.css">\n    <script type="module" src="/${page.entry}.js"></script>`,
+      `<link rel="stylesheet" href="/${css}">\n    <script type="module" src="/${js}"></script>`,
     );
   const outPath = path.join(DIST, page.out);
   mkdirSync(path.dirname(outPath), { recursive: true });
